@@ -1,19 +1,21 @@
-import { Component } from '@angular/core';
-import { MailService } from './mail.service';
+import { Component, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: `
-  <div>
-    <app-simple-form></app-simple-form>
+  template: `<div>
+  <ul>
+      <li *ngFor="let message of mail.messages">
+      {{message}}
+      </li>
+  </ul>
 
-    {{mail.messege}}
   </div>
   `
 
 })
 export class AppComponent {
-  title = 'Lets learn more!';
 
-  constructor(private mail:MailService){}
+  constructor(
+    @Inject('mail') private mail
+  ){}
 }
